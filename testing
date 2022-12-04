@@ -13,7 +13,7 @@ local Window = Library.CreateLib("Exile's Hoopz UI", "Serpent")
     local Player = Window:NewTab("Player")
     local PlayerSection = Player:NewSection("Player")
 
-    Speed = 40
+    Speed = 16
     local User = game:GetService "Players".LocalPlayer
     local Character = User.Character
     
