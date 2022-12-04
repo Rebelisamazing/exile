@@ -1,42 +1,34 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Exile's Hoopz UI", "Serpent")
-    -- MAIN
-    local Main = Window:NewTab("Main")
-    local MainSection = Main:NewSection("Utilities (Press 3 Dots First)")
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Exile's Hoopz Script", HidePremium = false, SaveConfig = true, ConfigFolder = "exile#7482"})
+
+local mainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+mainTab:AddButton({
+	Name = "Aimlock (USE CENTERED SHIFTLOCK)",
+	Callback = function()
+        loadstring(game:HttpGet('https://github.com/Rebelisamazing/msahub/blob/main/private'))()	
+  	end    
+})
+
+mainTab:AddSlider({
+	Name = "Walkspeed",
+	Min = 0,
+	Max = 20,
+	Default = 5,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "WS",
+	Callback = function(s)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+	end    
+})
 
 
-    MainSection:NewButton("Aimlock", "Use Centered Shiftlock to make it look accurate.", function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/Rebelisamazing/msahub/main/private'))()
-    end)
 
-    --> LOCAL PLAYER <--
-    local Player = Window:NewTab("Player")
-    local PlayerSection = Player:NewSection("Player")
 
-    Speed = 16
-    local User = game:GetService "Players".LocalPlayer
-    local Character = User.Character
-    
-    local Humanoid = Character:WaitForChild "Humanoid"
-    Humanoid.WalkSpeed = Speed
-    
-    PlayerSection:NewSlider(
-        "Walkspeed",
-        "SPEED!!",
-        19,
-        16,
-        function(s)
-          Speed = s;
-          Humanoid.WalkSpeed = s
-        end
-    )
-    User.CharacterAdded:Connect(
-        function(Character)
-            local Humanoid = Character:WaitForChild "Humanoid"
-            Humanoid.WalkSpeed = Speed
-        end
-    )
-
-    PlayerSection:NewButton("Reset WS", "Resets to defaults", function()
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
-    end)
+end
+OrionLib:Init()
