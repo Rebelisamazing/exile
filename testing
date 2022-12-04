@@ -14,16 +14,18 @@ local Window = Library.CreateLib("Exile's Hoopz UI", "Serpent")
     local PlayerSection = Player:NewSection("Player")
 
     PlayerSection:NewSlider("Walkspeed", "SPEED!!", 19, 16, function(s)
-    local Speed = s;
-	local User = game:GetService'Players'.LocalPlayer;
-	local Character = User.Character;
-
-	local Humanoid = Character:WaitForChild'Humanoid';
-	Humanoid.WalkSpeed = Speed;
-
-	User.CharacterAdded:Connect(function(Character)
-        local Humanoid = Character:WaitForChild'Humanoid';
-        Humanoid.WalkSpeed = Speed;
+        Sp = s
+                local Speed = Sp;
+                local User = game:GetService'Players'.LocalPlayer;
+                local Character = User.Character;
+        
+                local Humanoid = Character:WaitForChild'Humanoid';
+                Humanoid.WalkSpeed = Speed;
+        
+                User.CharacterAdded:Connect(function(Character)
+                local Humanoid = Character:WaitForChild'Humanoid';
+                Humanoid.WalkSpeed = Speed;
+        end)
     end)
 
     PlayerSection:NewButton("Reset WS", "Resets to defaults", function()
